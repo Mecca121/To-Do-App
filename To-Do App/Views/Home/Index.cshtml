@@ -1,8 +1,43 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model ToDoApp.Models.ToDoItem
+
+@{
+    ViewData["Title"] = "Create New Task";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-primary text-white">
+        <h3 class="mb-0">➕ Add New To-Do Item</h3>
+    </div>
+    <div class="card-body p-4">
+
+        <form method="post" asp-action="Create">
+            <div class="border p-3 mt-4">
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Title" class="p-0"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="row pt-4">
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-primary form-control">Create</button>
+                    </div>
+                    <div class="col-6">
+                        <a asp-controller="ToDo" asp-action="Index" class="btn btn-outline-secondary border form-control">
+                            Back to List
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
 </div>
+
+@section Scripts {
+    @{
+        // Renders client-side validation scripts (required for asp-validation-for)
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
